@@ -49,17 +49,17 @@ db.on("error", console.error.bind(console, "connection error:"));
 db.once("open", function() {
   console.log("we're connected to Mongo!");
 
-db.collection('inventory').count(function (err, count) {
-    if (err) throw err;    
-    console.log('Total Rows: ' + count);
-});
+// db.collection('inventory').count(function (err, count) {
+//     if (err) throw err;    
+//     console.log('Total Rows: ' + count);
+// });
 
 //to log the row items
 db.collection('inventory', function (err, collection) {
         
   collection.find().toArray(function(err, items) {
      if(err) throw err;    
-     console.log(items);            
+     console.log('The items are '+items);            
  });
  
 });
