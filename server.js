@@ -38,7 +38,7 @@ mongoose.connect('mongodb://'+MONGO_URL+'/'+MONGO_DATABASE,
    } 
 }
 ).then(() => {
-    console.log("DB connected")
+    console.log("DB connected");
 }).catch((err)=> {
     console.log("ERROR")
 })
@@ -48,6 +48,12 @@ const db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error:"));
 db.once("open", function() {
   console.log("we're connected to Mongo!");
+
+  db.collection('inventory').count(function (err, count) {
+    if (err) throw err;    
+    console.log('Total Rows: ' + count);
+});
+
 });
 
 var app = express();
